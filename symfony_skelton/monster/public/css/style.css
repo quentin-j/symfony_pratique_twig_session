@@ -1,0 +1,32 @@
+.wrap{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.monster {
+    float:left;
+    border:1px solid black;
+    padding:1em;
+    margin: 0.5em;
+}
+.pair {
+    background-color: aliceblue;
+}
+.impair {
+    background-color: azure;
+}
+img {
+    width: 220px;
+}
+.solo {
+    width: 400px;
+}
+.error_page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.error{
+    width: 1000px;
+    align-self: center;
+}

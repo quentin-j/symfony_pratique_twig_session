@@ -1,0 +1,35 @@
+{% extends "base.html.twig" %}
+
+{% block title %}monster from D&D{% endblock %}
+
+{% block body %}
+    <h1>Donjon et dragon </h1>
+    <h2>Bestiaire</h2>
+    <a href="{{ asset('files/Monstres.pdf') }}">see official monster mannuel</a>
+    <a href="{{ path('grimoire') }}">Download official monster mannuel</a>
+    <p>
+        Last seen monster : <a href ="{{ path('monster_solo', {id : last_monster_id}) }}">{{ last_monster.name }}</a>
+    </p>
+    <hr>
+    <div class="wrap">
+        {% set case = ['pair', 'impair'] %}{# <= peut-être aussi défini dans le controller #}
+        {% for monster_index, monster in all_monsters %}
+        {# sans le cycle 
+                            <div class="monster {% if loop.index is divisible by(2) %} pair {% else %} impair {% endif %}">  
+                        #}
+        {# avec le cycle #}
+        <div class="monster {{ cycle(case, loop.index) }}">
+            <img src="{{ asset('images/' ~ monster.image) }}" />
+            <a href="{{ path('monster_solo', {id: monster_index}) }}">{{ monster.name }}</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block stylesheet %}
+{{ parent() }}
+<style>
+    .monster {
+        color: white
+    }
+</style>
+{% endblock %}

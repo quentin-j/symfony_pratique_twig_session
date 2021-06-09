@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+
+{% block title %}monstre -{{monster_id}}{% endblock %}
+
+{% block body %}
+<div class="error_page">
+    <h1> 404 ce monstre n'existe pas, fuyez pauvre fou !</h1>
+
+    <img src="{{ asset('images/404.jpeg') }}" class="error" />
+</div>
+<hr>
+<a href="{{ path('monsters_list') }}">retour à l'acceuil</a>
+
+{% endblock %}
