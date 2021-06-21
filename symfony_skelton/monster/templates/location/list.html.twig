@@ -7,9 +7,8 @@
     <h2>Bestiaire</h2>
     <a href="{{ asset('files/Monstres.pdf') }}">see official monster mannuel</a>
     <a href="{{ path('grimoire') }}">Download official monster mannuel</a>
-    <p>
-        Last seen monster : <a href ="{{ path('monster_solo', {id : last_monster_id}) }}">{{ last_monster.name }}</a>
-    </p>
+    <h2>Last seen monster :</h2> <a href="{{ path('monster_solo', { id: last_monster_id }) }}">{{ last_monster.name }}</a>
+    
     <hr>
     <div class="wrap">
         {% set case = ['pair', 'impair'] %}{# <= peut-être aussi défini dans le controller #}
@@ -19,8 +18,10 @@
                         #}
         {# avec le cycle #}
         <div class="monster {{ cycle(case, loop.index) }}">
-            <img src="{{ asset('images/' ~ monster.image) }}" />
-            <a href="{{ path('monster_solo', {id: monster_index}) }}">{{ monster.name }}</a>
+            <a href="{{ path('monster_solo', {id: monster_index}) }}">
+                <img src="{{ asset('images/' ~ monster.image) }}" />
+                <h3>{{monster.name}}</h3>
+            </a>
         </div>
         {% endfor %}
     </div>
@@ -33,3 +34,10 @@
     }
 </style>
 {% endblock %}
+{#
+
+  <p>
+        Last seen monster : <a href ="">{{ last_monster.name }}</a>
+    </p>
+
+#}
