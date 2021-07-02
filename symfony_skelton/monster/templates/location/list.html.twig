@@ -3,28 +3,37 @@
 {% block title %}monster from D&D{% endblock %}
 
 {% block body %}
+<header>
     <h1>Donjon et dragon </h1>
-    <h2>Bestiaire</h2>
-    <a href="{{ asset('files/Monstres.pdf') }}">see official monster mannuel</a>
-    <a href="{{ path('grimoire') }}">Download official monster mannuel</a>
-    <h2>Last seen monster :</h2> <a href="{{ path('monster_solo', { id: last_monster_id }) }}">{{ last_monster.name }}</a>
-    
-    <hr>
-    <div class="wrap">
-        {% set case = ['pair', 'impair'] %}{# <= peut-être aussi défini dans le controller #}
-        {% for monster_index, monster in all_monsters %}
-        {# sans le cycle 
+    <div class="headerLinks">
+        <h2>Bestiaire</h2>
+        <a href="{{ asset('files/Monstres.pdf') }}">see official monster mannuel</a>
+        <a href="{{ path('grimoire') }}">Download official monster mannuel</a>
+        <h2>Last seen monster :</h2> <a
+            href="{{ path('monster_solo', { id: last_monster_id }) }}">{{ last_monster.name }}</a>
+    </div>
+</header>
+<div class="wrap">
+    {# {% set case = ['pair', 'impair'] %}<= peut-être aussi défini dans le controller #}
+    {% for monster_index, monster in all_monsters %}
+    {# sans le cycle 
                             <div class="monster {% if loop.index is divisible by(2) %} pair {% else %} impair {% endif %}">  
                         #}
-        {# avec le cycle #}
-        <div class="monster {{ cycle(case, loop.index) }}">
-            <a href="{{ path('monster_solo', {id: monster_index}) }}">
+    {# avec le cycle #}
+    <div class="monster  {# {{ cycle(case, loop.index) }} #} container">
+        <div class="card">
+            <div class="imgList">
                 <img src="{{ asset('images/' ~ monster.image) }}" />
+            </div>
+            <div class="content">
                 <h3>{{monster.name}}</h3>
-            </a>
+                <p>{{monster.intro}}</p>
+                <a href="{{ path('monster_solo', {id: monster_index}) }}">découvrir ce monstre</a>
+            </div>
         </div>
-        {% endfor %}
     </div>
+    {% endfor %}
+</div>
 {% endblock %}
 {% block stylesheet %}
 {{ parent() }}

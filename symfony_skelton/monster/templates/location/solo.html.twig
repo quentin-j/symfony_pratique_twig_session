@@ -3,13 +3,14 @@
 {% block title %}monstre -{{monster_id}}{% endblock %}
 
 {% block body %}
-<h1> {{ monster.name }}</h1>
+<h1 class="monsterSolo"> {{ monster.name }}</h1>
 
 <img src="{{ asset('images/' ~ monster.image) }}" class="solo" />
-<p>
+<p class="monsterDesc">
     {{ monster.description }}
 </p>
-<hr>
-<a href="{{ path('monsters_list') }}">retour à l'acceuil</a>
 
+<div class="backToTheFuture">
+<a href="{{ path('monsters_list') }}">retour à l'acceuil</a>
+</div>
 {% endblock %}
